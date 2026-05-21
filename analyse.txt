@@ -1,0 +1,6 @@
+n = 100 : 4950 comparaisons , 2.65 ms
+n = 500 : 124750 comparaisons , 23.51 ms
+n = 1000 : 499500 comparaisons , 162.92 ms
+n = 2000 : 1999000 comparaisons , 527 ms
+n = 5000 : 12497500 comparaisons , 2870.57 ms
+n = 10000 : 49995000 comparaisons , 8409.68 ms
