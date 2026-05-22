@@ -4,7 +4,7 @@ require_once "tris.php";
 
 $t = [4, 5, 8, 0, 1, 1];
 echo "avant de trier : ". implode(', ', $t)."\n"; 
-
+/*
 #=============Tri à Bulles===================
 # Analyse :
 #============================================
@@ -51,4 +51,26 @@ foreach ( $tailles as $n) {
     $temps = triSelectionChrono ( $tab );
     echo "n = $n : $nbComp comparaisons , $temps ms\n";
 }
+*/
+#===========Tri par Insertion================
+# Analyse :
+#============================================
 
+echo "Tri par Insertion\n";
+
+echo implode(', ', triInsertion($t)) . "\n";
+
+echo "l'algorithme du tri par sélection a fait ".
+        triInsertionCompte($t).
+        " comparaisons pour trier un tableau de ".
+        count($t)." éléments.\n";
+
+echo "\nAnalyse:\n";
+$tailles = [100 , 500 , 1000 , 2000 , 5000 , 10000];
+
+foreach ( $tailles as $n) {
+    $tab = range ($n , 1); // [n, n -1, ... , 2, 1] = cas defavorable
+    $nbComp = triInsertionCompte ( $tab );
+    $temps = triInsertionChrono ( $tab );
+    echo "n = $n : $nbComp comparaisons , $temps ms\n";
+}

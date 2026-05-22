@@ -84,3 +84,45 @@ function triSelectionCompte($tab){
     }
     return $compteur;
 }
+
+function triInsertion($tab){
+    $n = count($tab);
+    // partie triée : le premier élément 
+    for($i=1; $i<$n; $i++){
+        // inserer $tab[$i] par décalage dans la partie triée
+        $cle = $tab[$i];
+        $j=$i-1;
+        while($j>=0 && $cle<$tab[$j]){
+            $tab[$j+1]= $tab[$j]; 
+            $j--;
+        }
+        $tab[$j+1] = $cle;
+    }
+    return $tab;
+}
+
+function triInsertionChrono ( $tab ) {
+    $debut = microtime ( true );
+    triInsertion ( $tab );
+    $fin = microtime ( true );
+    return round (( $fin - $debut ) * 1000 , 2); // en ms
+}
+
+function triInsertionCompte($tab){
+    $n = count($tab);
+    $compteur = 0;
+    // partie triée : le premier élément 
+    for($i=1; $i<$n; $i++){
+        // inserer $tab[$i] par décalage dans la partie triée
+        $cle = $tab[$i];
+        $j=$i-1;
+        while($j>=0 && $cle<$tab[$j]){
+            $compteur += 1;
+            $tab[$j+1]= $tab[$j]; 
+            $j--;
+        }
+        //$compteur += 1;
+        $tab[$j+1] = $cle;
+    }
+    return $compteur;
+}
