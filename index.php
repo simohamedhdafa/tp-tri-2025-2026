@@ -51,7 +51,7 @@ foreach ( $tailles as $n) {
     $temps = triSelectionChrono ( $tab );
     echo "n = $n : $nbComp comparaisons , $temps ms\n";
 }
-*/
+
 #===========Tri par Insertion================
 # Analyse :
 #============================================
@@ -74,3 +74,22 @@ foreach ( $tailles as $n) {
     $temps = triInsertionChrono ( $tab );
     echo "n = $n : $nbComp comparaisons , $temps ms\n";
 }
+*/
+
+#==============Tri par Fusion================
+# Analyse :
+#============================================
+
+echo "Tri par Fusion\n";
+
+echo implode(', ', triFusion($t)) . "\n";
+
+echo "\nAnalyse:\n";
+$tailles = [100 , 500 , 1000 , 2000 , 5000 , 10000];
+
+foreach ( $tailles as $n) {
+    $tab = range ($n , 1); // [n, n -1, ... , 2, 1] = cas defavorable
+    $temps = triFusionChrono ( $tab );
+    echo "n = $n : $temps ms\n";
+}
+

@@ -126,3 +126,52 @@ function triInsertionCompte($tab){
     }
     return $compteur;
 }
+
+function fusionner($tab_g, $tab_d) {
+    $tab_f = [];
+    $n_g = count($tab_g); 
+    $n_d = count($tab_d);
+    $i = $j = $k = 0;
+
+    while($i < $n_g && $j < $n_d) {
+        # on compare, on ajoute le min à la fusion et on incrémente les bons itérateurs 
+        if($tab_g[$i] <= $tab_d[$j])
+            $tab_f[$k] = $tab_g[$i++];
+        else
+            $tab_f[$k] = $tab_d[$j++];
+        $k++;
+    }
+
+    # en quittant while, un des deux tableaux est entièrement parcouru 
+    while($i < $n_g) {
+        # compléter $tab_f par ce qui reste de $tab_g
+        $tab_f[$k++] = $tab_g[$i++];
+    }
+    
+    while($j < $n_d) {
+        # compléter $tab_f par ce qui reste de $tab_d
+        $tab_f[$k++] = $tab_d[$j++];
+    }
+    
+    return $tab_f; // Correction : $tab_f au lieu de $t
+}
+
+function triFusion($tab){
+    $n = count($tab);
+
+    if ($n <= 1) return $tab ;
+
+    $milieu = (int) ($n / 2);
+    
+    $gauche = triFusion ( array_slice ($tab , 0, $milieu ));
+    $droite = triFusion ( array_slice ($tab , $milieu ));
+
+    return fusionner ( $gauche , $droite );   
+}
+
+function triFusionChrono ( $tab ) {
+    $debut = microtime ( true );
+    triFusion ( $tab );
+    $fin = microtime ( true );
+    return round (( $fin - $debut ) * 1000 , 2); // en ms
+}
